@@ -18,7 +18,7 @@ namespace GameCaro
         public Form1()
         {
             InitializeComponent();
-            ChessBoard = new ChessBoardManager(pnlCheckBoard);
+            ChessBoard = new ChessBoardManager(pnlCheckBoard, txbPlayerName, pctbMark);
             ChessBoard.DrawChessBoard();
         }
         

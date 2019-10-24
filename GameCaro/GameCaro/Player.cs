@@ -12,9 +12,10 @@ namespace GameCaro
         private string name;
         public string Name
         {
-            get { return Name; }
-            set { Name = value; }
+            get { return name; }
+            set { name = value; }
         }
+
         private Image mark;
 
         public Image Mark

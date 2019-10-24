@@ -34,13 +34,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pctbMark = new System.Windows.Forms.PictureBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbPlayerName = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctbMark)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -59,9 +59,9 @@
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.textBox2);
-            this.panel3.Controls.Add(this.pictureBox1);
+            this.panel3.Controls.Add(this.pctbMark);
             this.panel3.Controls.Add(this.progressBar1);
-            this.panel3.Controls.Add(this.textBox1);
+            this.panel3.Controls.Add(this.txbPlayerName);
             this.panel3.Location = new System.Drawing.Point(902, 555);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(367, 212);
@@ -95,14 +95,15 @@
             this.textBox2.TabIndex = 3;
             this.textBox2.Text = "127.0.0.1";
             // 
-            // pictureBox1
+            // pctbMark
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.Location = new System.Drawing.Point(181, 14);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(165, 126);
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
+            this.pctbMark.BackColor = System.Drawing.SystemColors.Control;
+            this.pctbMark.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pctbMark.Location = new System.Drawing.Point(181, 14);
+            this.pctbMark.Name = "pctbMark";
+            this.pctbMark.Size = new System.Drawing.Size(165, 126);
+            this.pctbMark.TabIndex = 2;
+            this.pctbMark.TabStop = false;
             // 
             // progressBar1
             // 
@@ -111,15 +112,15 @@
             this.progressBar1.Size = new System.Drawing.Size(148, 23);
             this.progressBar1.TabIndex = 1;
             // 
-            // textBox1
+            // txbPlayerName
             // 
-            this.textBox1.Location = new System.Drawing.Point(14, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(148, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Thai";
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txbPlayerName.Location = new System.Drawing.Point(14, 14);
+            this.txbPlayerName.Name = "txbPlayerName";
+            this.txbPlayerName.ReadOnly = true;
+            this.txbPlayerName.Size = new System.Drawing.Size(148, 20);
+            this.txbPlayerName.TabIndex = 0;
+            this.txbPlayerName.Text = "\r\n";
+            this.txbPlayerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel1
             // 
@@ -156,7 +157,7 @@
             this.Text = "Game Caro LAN";
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pctbMark)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
@@ -168,11 +169,11 @@
         private System.Windows.Forms.Panel pnlCheckBoard;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbPlayerName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pctbMark;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox2;
     }
