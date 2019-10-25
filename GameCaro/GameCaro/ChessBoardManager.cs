@@ -36,6 +36,9 @@ namespace GameCaro
 
         private PictureBox playerMark;
         public PictureBox PlayerMark { get => playerMark; set => playerMark = value; }
+
+        private List<List<Button>> matrix;
+        public List<List<Button>> Matrix { get => matrix; set => matrix = value; }
         #endregion
 
         #region Initialize
@@ -58,22 +61,11 @@ namespace GameCaro
         #region Methods
         public void DrawChessBoard()
         {
-            /*
-            Button btn = new Button();
-            btn.Text = "Test";
-            btn.Location = new Point(45, 45);
-
-            Button btn2 = new Button();
-            btn2.Text = "Test2";
-            btn2.Location = new Point(btn.Location.X + btn.Width, btn.Location.Y);
-
-            pnlCheckBoard.Controls.Add(btn);
-            pnlCheckBoard.Controls.Add(btn2);
-            */
-
+            Matrix = new List<List<Button>>();
             Button oldButton = new Button() { Width = 0, Location = new Point(0, 0) };
             for (int i = 0; i < Cons.CHESS_BOARD_WIDTH; i++)
             {
+                Matrix.Add(new List<Button>());
                 for (int j = 0; j < Cons.CHESS_BOARD_HEIGHT; j++)
                 {
                     Button btn = new Button()
@@ -81,10 +73,16 @@ namespace GameCaro
                         Width = Cons.CHESS_WIDTH,
                         Height = Cons.CHESS_HEIGHT,
                         Location = new Point(oldButton.Location.X + oldButton.Width, oldButton.Location.Y),
-                        BackgroundImageLayout = ImageLayout.Stretch
+                        BackgroundImageLayout = ImageLayout.Stretch,
+                        Tag = i.ToString()
                     };
+
                     btn.Click += btn_Click;
+
                     chessBoard.Controls.Add(btn);
+
+                    Matrix[i].Add(btn);
+
                     oldButton = btn;
                 }
                 oldButton.Location = new Point(0, oldButton.Location.Y + Cons.CHESS_HEIGHT);
@@ -100,7 +98,73 @@ namespace GameCaro
                 return;
             Mark(btn);
             ChangePlayer();
+            if (isEndGame(btn))
+            {
+                EndGame();
+            }
         }
+
+        private void EndGame()
+        {
+            MessageBox.Show("Ket thuc game");
+        }
+
+        private bool isEndGame(Button btn)
+        {
+            return isEndHorizontal(btn) || isEndVertical(btn) || isEndPrimary(btn) || isEndSub(btn);
+        }
+
+        private Point GetChessPoint(Button btn)
+        {
+            int vertical = Convert.ToInt32(btn.Tag);
+            int horizontal = Matrix[vertical].IndexOf(btn);
+            Point point = new Point(vertical, horizontal);
+            return point;
+        }
+        private bool isEndHorizontal(Button btn)
+        {
+            Point point = GetChessPoint(btn);
+
+            int countLeft = 0;
+            for(int i = point.X; i > 0; i--)
+            {
+                if (Matrix[point.Y][i].BackgroundImage == btn.BackgroundImage)
+                {
+                    countLeft++;
+                }
+                else
+                    break;
+            }
+
+            int countRight = 0;
+            for (int i = point.X; i < Cons.CHESS_BOARD_WIDTH; i++)
+            {
+                if (Matrix[point.Y][i].BackgroundImage == btn.BackgroundImage)
+                {
+                    countRight++;
+                }
+                else
+                    break;
+            }
+
+            return countLeft + countRight == 5;
+        }
+
+        private bool isEndVertical(Button btn)
+        {
+            return false;
+        }
+
+        private bool isEndPrimary(Button btn)
+        {
+            return false;
+        }
+
+        private bool isEndSub(Button btn)
+        {
+            return false;
+        }
+
         private void Mark(Button btn)
         {
             btn.BackgroundImage = Player[CurrentPlayer].Mark;
