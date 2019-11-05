@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.pnlCheckBoard = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -35,10 +36,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.pctbMark = new System.Windows.Forms.PictureBox();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.prcbCoolDown = new System.Windows.Forms.ProgressBar();
             this.txbPlayerName = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.tmCoolDown_Tick = new System.Windows.Forms.Timer(this.components);
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pctbMark)).BeginInit();
             this.panel1.SuspendLayout();
@@ -60,7 +62,7 @@
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.textBox2);
             this.panel3.Controls.Add(this.pctbMark);
-            this.panel3.Controls.Add(this.progressBar1);
+            this.panel3.Controls.Add(this.prcbCoolDown);
             this.panel3.Controls.Add(this.txbPlayerName);
             this.panel3.Location = new System.Drawing.Point(902, 555);
             this.panel3.Name = "panel3";
@@ -105,12 +107,13 @@
             this.pctbMark.TabIndex = 2;
             this.pctbMark.TabStop = false;
             // 
-            // progressBar1
+            // prcbCoolDown
             // 
-            this.progressBar1.Location = new System.Drawing.Point(14, 40);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(148, 23);
-            this.progressBar1.TabIndex = 1;
+            this.prcbCoolDown.Location = new System.Drawing.Point(14, 40);
+            this.prcbCoolDown.Name = "prcbCoolDown";
+            this.prcbCoolDown.Size = new System.Drawing.Size(148, 23);
+            this.prcbCoolDown.TabIndex = 1;
+            this.prcbCoolDown.Click += new System.EventHandler(this.prcbCoolDown_Click);
             // 
             // txbPlayerName
             // 
@@ -144,6 +147,10 @@
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
+            // tmCoolDown_Tick
+            // 
+            this.tmCoolDown_Tick.Tick += new System.EventHandler(this.prcbCoolDown_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -168,7 +175,7 @@
 
         private System.Windows.Forms.Panel pnlCheckBoard;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ProgressBar prcbCoolDown;
         private System.Windows.Forms.TextBox txbPlayerName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
@@ -176,6 +183,7 @@
         private System.Windows.Forms.PictureBox pctbMark;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Timer tmCoolDown_Tick;
     }
 }
 

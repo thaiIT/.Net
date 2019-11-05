@@ -21,6 +21,10 @@ namespace GameCaro
             ChessBoard = new ChessBoardManager(pnlCheckBoard, txbPlayerName, pctbMark);
             ChessBoard.DrawChessBoard();
         }
-        
+
+        private void prcbCoolDown_Click(object sender, EventArgs e)
+        {
+             
+        }
     }
 }
