@@ -39,6 +39,35 @@ namespace GameCaro
 
         private List<List<Button>> matrix;
         public List<List<Button>> Matrix { get => matrix; set => matrix = value; }
+        
+        private event EventHandler playerMaked;
+        public event EventHandler PLayerMarked
+        {
+            add
+            {
+                playerMaked += value;
+            }
+            remove
+            {
+                playerMaked -= value;
+            }
+        }
+
+        private event EventHandler endedGameWinner;
+        public event EventHandler EndedGameWinner
+        {
+            add
+            {
+                endedGameWinner += value;
+            }
+            remove
+            {
+                endedGameWinner -= value;
+            }
+        }
+
+        private Stack<PlayInfo> playTimeLine;
+        public Stack<PlayInfo> PlayTimeLine { get => playTimeLine; set => playTimeLine = value; }
         #endregion
 
         #region Initialize
@@ -53,14 +82,20 @@ namespace GameCaro
                 new Player("PlayerB", Image.FromFile(Application.StartupPath + "\\Resources\\Game-spades-icon.png"))
 
             };
-            CurrentPlayer = 0;
-            ChangePlayer();
         }
         #endregion
 
         #region Methods
         public void DrawChessBoard()
         {
+            chessBoard.Enabled = true;
+            ChessBoard.Controls.Clear();
+
+            PlayTimeLine = new Stack<PlayInfo>();
+
+            CurrentPlayer = 0;
+            ChangePlayer();
+
             Matrix = new List<List<Button>>();
             Button oldButton = new Button() { Width = 0, Location = new Point(0, 0) };
             for (int i = 0; i < Cons.CHESS_BOARD_WIDTH; i++)
@@ -96,19 +131,56 @@ namespace GameCaro
             Button btn = sender as Button;
             if (btn.BackgroundImage != null)
                 return;
+
             Mark(btn);
-            ChangePlayer();
+
+            PlayTimeLine.Push(new PlayInfo(GetChessPoint(btn), CurrentPlayer));
+            CurrentPlayer = CurrentPlayer == 1 ? 0 : 1;
+            
+            if (playerMaked != null)
+                playerMaked(this, new EventArgs());
+
             if (isEndGame(btn))
             {
-                EndGame();
+                EndGameWinner();
+            }
+            else
+            {
+                ChangePlayer();
             }
         }
 
-        private void EndGame()
+        public void EndGameWinner()
         {
             //int winner = CurrentPlayer == 1 ? 0 : 1;
             //MessageBox.Show("Kết thúc!\n" + Player[winner].Name + " Win =.=!");
-            MessageBox.Show("Ket thuc game!");
+            //MessageBox.Show("Ket thuc game!");
+            if (endedGameWinner != null)
+                endedGameWinner(this, new EventArgs());
+        }
+
+        public bool Undo()
+        {
+            if (PlayTimeLine.Count <= 0)
+                return false;
+
+            PlayInfo oldPoint = PlayTimeLine.Pop();
+            Button btn = Matrix[oldPoint.Point.Y][oldPoint.Point.X];
+            btn.BackgroundImage = null;
+
+            if(PlayTimeLine.Count <= 0)
+            {
+                CurrentPlayer = 0;
+            } 
+            else
+            {
+                oldPoint = PlayTimeLine.Peek();
+                CurrentPlayer = oldPoint.CurrentPlayer == 1 ? 0 : 1;
+            }
+
+            ChangePlayer();
+
+            return true;
         }
 
         private bool isEndGame(Button btn)
@@ -249,7 +321,7 @@ namespace GameCaro
         private void Mark(Button btn)
         {
             btn.BackgroundImage = Player[CurrentPlayer].Mark;
-            CurrentPlayer = CurrentPlayer == 1 ? 0 : 1;
+            //CurrentPlayer = CurrentPlayer == 1 ? 0 : 1;
         }
         private void ChangePlayer()
         {
