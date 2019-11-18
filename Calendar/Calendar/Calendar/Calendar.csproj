@@ -52,6 +52,7 @@
     <Compile Include="AJob.Designer.cs">
       <DependentUpon>AJob.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cons.cs" />
     <Compile Include="DailyPlan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +65,8 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlanData.cs" />
+    <Compile Include="PlanItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AJob.resx">

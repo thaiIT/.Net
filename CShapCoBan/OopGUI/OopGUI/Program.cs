@@ -6,53 +6,33 @@ using System.Threading.Tasks;
 
 namespace OopGUI
 {
-    class Animal
-    {
-        protected double Weight;
-        protected double Height;
-        protected static int Legs;
-
-        public Animal(double w, double h, int l)
-        {
-            Weight = w;
-            Height = h;
-            Legs = l;
-        }
-
-        public void Info()
-        {
-            Console.WriteLine(" Weight: " + Weight + " Height: " + Height + " Legs: " + Legs);
-        }
-    }
-
-    class Cat : Animal
-    {
-        public Cat(double w, double h, int l) : base(w, h, l)
-        {
-            //Weight = 600;
-            //Height = 20;
-            //Legs = 2;
-        }
-
-        //public Cat()
-        //{
-        //    /*
-        //    Lớp Cat kế thừa lớp Animal
-        //    mà các thuộc tính Weight, Height, Legs có phạm vi là protected nên được phép kế thừa
-        //    Từ đó lớp Cat có thể sử dụng mà không cần phải khai báo
-        //     */
-        //    Weight = 500;
-        //    Height = 20;
-        //    Legs = 2;
-        //}
-    }
 
     class Program
     {
         static void Main(string[] args)
         {
-            Cat BlackCat = new Cat(1,1,1);
-            BlackCat.Info();
+
+            //Cat BlackCat = new Cat(1,1,1);
+            //BlackCat.Info();
+
+            Console.WriteLine("Tinh ke thua trong C#: ");
+            HinhChuNhat hcn = new HinhChuNhat();
+            hcn.setChieuRong(5);
+            hcn.setChieuCao(7);
+            Console.WriteLine("Dien tich hinh chu nhat: {0}", hcn.tinhDienTich());
+            Console.WriteLine("*************************");
+            Console.WriteLine("Khoi tao lop co so: ");
+            ChiPhiXayDung t = new ChiPhiXayDung(4.5, 7.5);
+            t.hienThiThongTin();
+            Console.WriteLine("*************************");
+            Console.WriteLine("Vi du minh hoa Da ke thua: ");
+            CanNha cn = new CanNha();
+            cn.setChieuRong(5);
+            cn.setChieuCao(7);
+            int dien_tich = cn.tinhDienTich();
+            Console.WriteLine("Tong dien tich: {0}", cn.tinhDienTich());
+            Console.WriteLine("Tong chi phi son: ${0}", cn.tinhChiPhi(dien_tich));
+
             Console.ReadKey();
         }
     }
